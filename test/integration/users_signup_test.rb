@@ -17,7 +17,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_select "li", "Name can't be blank"
     assert_select "li", "Email is invalid"
     assert_select "li", "Password confirmation doesn't match Password"
-    assert_select "li", "Password is too short (minimum is 5 characters)"
+    assert_select "li", "Password is too short (minimum is 6 characters)"
   end
 
   test "valid signup information" do
@@ -31,8 +31,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'users/show'
     assert_not flash.nil?
-
+    assert is_logged_in?
   end
-
-
 end
